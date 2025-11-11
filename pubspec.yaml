@@ -1,0 +1,76 @@
+name: health_tracker_app
+description: A comprehensive health tracking app with offline capabilities
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Firebase (for emulator)
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  cloud_firestore: ^4.13.6
+  
+  # Local storage
+  sqflite: ^2.3.0
+  shared_preferences: ^2.2.2
+  
+  # State management
+  provider: ^6.1.1
+  
+  # UI components
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.9
+  
+  # Charts and visualization
+  fl_chart: ^0.65.0
+  
+  # Notifications
+  flutter_local_notifications: ^16.3.0
+  
+  # Network connectivity
+  connectivity_plus: ^5.0.2
+  
+  # Date and time
+  intl: ^0.19.0
+  
+  # Email launcher
+  url_launcher: ^6.2.2
+  
+  # Path provider for local files
+  path_provider: ^2.1.2
+  path: ^1.8.3
+  
+  # Device info
+  device_info_plus: ^9.1.1
+  
+  # Responsive design
+  flutter_screenutil: ^5.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+  
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
