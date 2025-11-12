@@ -4,10 +4,21 @@
     "java.errors.incompleteClasspath.severity": "ignore",
     "java.import.gradle.enabled": true,
     "java.import.gradle.wrapper.enabled": true,
+    "java.server.launchMode": "Standard",
+    "java.sources.organizeImports.starThreshold": 99,
+    "java.sources.organizeImports.staticStarThreshold": 99,
+    "dart.flutterSdkPath": "C:\\Users\\Michael\\OneDrive\\HTAD\\flutter",
     "files.exclude": {
         "**/.dart_tool": true,
         "**/.flutter-plugins": true,
         "**/.flutter-plugins-dependencies": true,
-        "**/build": true
+        "**/build": true,
+        "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java": true
+    },
+    "files.watcherExclude": {
+        "**/.dart_tool/**": true,
+        "**/build/**": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true
     }
 }
