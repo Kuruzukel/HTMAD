@@ -102,12 +102,6 @@ class _ActivitiesScreenState extends State<ActivitiesScreen>
       appBar: AppBar(
         title: const Text('Activities'),
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: _navigateToAddActivity,
-          ),
-        ],
         bottom: TabBar(
           controller: _tabController,
           onTap: _onTabChanged,
