@@ -37,15 +37,15 @@ class HealthTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812), // iPhone X design size
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MultiProvider(
-          providers: AppProviders.providers,
-          child: Consumer<ThemeProvider>(
-            builder: (context, themeProvider, child) {
+    return MultiProvider(
+      providers: AppProviders.providers,
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) {
+          return ScreenUtilInit(
+            designSize: const Size(375, 812), // iPhone X design size
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
               return MaterialApp(
                 title: AppConfig.appName,
                 debugShowCheckedModeBanner: false,
@@ -63,9 +63,9 @@ class HealthTrackerApp extends StatelessWidget {
                 },
               );
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
