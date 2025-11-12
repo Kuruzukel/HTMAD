@@ -386,14 +386,10 @@ Need help? We're here for you!
 
 <div align="center">
 
-### ⭐ Star this repo if you find it helpful!
-
-**Built with ❤️ using Flutter**
 
 **KEL EMMAN AERON**
 
 ---
 
-[⬆ Back to Top](#-health-tracker-app)
 
 </div>
