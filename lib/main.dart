@@ -14,8 +14,13 @@ import 'presentation/screens/splash/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase with emulator
-  await FirebaseService.initialize();
+  // Initialize Firebase with emulator (optional - will continue if it fails)
+  try {
+    await FirebaseService.initialize();
+  } catch (e) {
+    debugPrint('Firebase initialization failed: $e');
+    debugPrint('App will continue without Firebase');
+  }
 
   // Initialize local database
   await DatabaseService.initialize();

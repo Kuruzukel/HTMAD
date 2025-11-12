@@ -16,6 +16,18 @@ class FirebaseService {
 
   static Future<void> initialize() async {
     try {
+      // Check if Firebase is already initialized
+      if (Firebase.apps.isNotEmpty) {
+        _app = Firebase.app();
+        _auth = FirebaseAuth.instance;
+        _firestore = FirebaseFirestore.instance;
+
+        if (kDebugMode) {
+          debugPrint('Firebase already initialized, reusing existing instance');
+        }
+        return;
+      }
+
       // Initialize Firebase with emulator configuration
       _app = await Firebase.initializeApp(
         options: const FirebaseOptions(
@@ -28,27 +40,46 @@ class FirebaseService {
 
       // Initialize Firebase Auth with emulator
       _auth = FirebaseAuth.instanceFor(app: _app!);
-      await _auth!.useAuthEmulator(
-        AppConfig.authEmulatorHost,
-        AppConfig.authEmulatorPort,
-      );
+
+      try {
+        await _auth!.useAuthEmulator(
+          AppConfig.authEmulatorHost,
+          AppConfig.authEmulatorPort,
+        );
+        if (kDebugMode) {
+          debugPrint('Connected to Firebase Auth Emulator');
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('Could not connect to Auth Emulator: $e');
+        }
+      }
 
       // Initialize Firestore with emulator
       _firestore = FirebaseFirestore.instanceFor(app: _app!);
-      _firestore!.useFirestoreEmulator(
-        AppConfig.firestoreEmulatorHost,
-        AppConfig.firestoreEmulatorPort,
-      );
+
+      try {
+        _firestore!.useFirestoreEmulator(
+          AppConfig.firestoreEmulatorHost,
+          AppConfig.firestoreEmulatorPort,
+        );
+        if (kDebugMode) {
+          debugPrint('Connected to Firestore Emulator');
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('Could not connect to Firestore Emulator: $e');
+        }
+      }
 
       if (kDebugMode) {
-        debugPrint('Firebase initialized successfully with emulators');
+        debugPrint('Firebase initialized successfully');
       }
     } catch (e) {
       if (kDebugMode) {
         debugPrint('Error initializing Firebase: $e');
       }
-      // For development, we'll continue without Firebase if emulators aren't running
-      // In production, you might want to handle this differently
+      rethrow; // Re-throw to handle at app level
     }
   }
 

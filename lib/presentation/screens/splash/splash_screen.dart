@@ -53,22 +53,36 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void _navigateToNextScreen() {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      if (mounted) {
+    Future.delayed(const Duration(milliseconds: 3000), () async {
+      if (!mounted) return;
+
+      try {
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        
+
+        // Wait a bit for auth state to settle
+        await Future.delayed(const Duration(milliseconds: 300));
+
+        if (!mounted) return;
+
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) {
-              return authProvider.isAuthenticated 
+              return authProvider.isAuthenticated
                   ? const MainScreen()
                   : const LoginScreen();
             },
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
               return FadeTransition(opacity: animation, child: child);
             },
             transitionDuration: const Duration(milliseconds: 500),
           ),
+        );
+      } catch (e) {
+        // If there's any error, just go to login screen
+        if (!mounted) return;
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
         );
       }
     });

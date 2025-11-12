@@ -216,6 +216,11 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Show type selector only when adding new activity from "All" tab
+                if (widget.activityType == null && widget.activity == null)
+                  _buildTypeSelector(),
+                if (widget.activityType == null && widget.activity == null)
+                  SizedBox(height: 24.h),
                 _buildActivityTypeCard(),
                 SizedBox(height: 24.h),
                 _buildValueInput(),
@@ -232,6 +237,79 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTypeSelector() {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Select Activity Type',
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: ActivityType.values.map((type) {
+                final isSelected = _selectedType == type;
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedType = type;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 60.w,
+                        height: 60.w,
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? _getColorForType(type).withValues(alpha: 0.2)
+                              : Colors.grey.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(30.r),
+                          border: Border.all(
+                            color: isSelected
+                                ? _getColorForType(type)
+                                : Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            type.icon,
+                            style: TextStyle(fontSize: 28.sp),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        type.displayName,
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                          color: isSelected ? _getColorForType(type) : Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
         ),
       ),
     );
@@ -364,11 +442,14 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                   color: AppTheme.primaryColor,
                 ),
                 SizedBox(width: 8.w),
-                Text(
-                  DateFormat('MMM dd, yyyy').format(_selectedDate),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
+                Flexible(
+                  child: Text(
+                    DateFormat('MMM dd, yyyy').format(_selectedDate),
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -409,11 +490,14 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
                   color: AppTheme.primaryColor,
                 ),
                 SizedBox(width: 8.w),
-                Text(
-                  _selectedTime.format(context),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
+                Flexible(
+                  child: Text(
+                    _selectedTime.format(context),
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -435,7 +519,11 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
   }
 
   Color _getActivityColor() {
-    switch (_selectedType) {
+    return _getColorForType(_selectedType);
+  }
+
+  Color _getColorForType(ActivityType type) {
+    switch (type) {
       case ActivityType.water:
         return Colors.blue;
       case ActivityType.exercise:

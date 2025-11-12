@@ -44,30 +44,38 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8.w),
-                      decoration: BoxDecoration(
-                        color: _getActivityColor().withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8.r),
+                Flexible(
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8.w),
+                        decoration: BoxDecoration(
+                          color: _getActivityColor().withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Text(
+                          widget.activityType.icon,
+                          style: TextStyle(fontSize: 20.sp),
+                        ),
                       ),
-                      child: Text(
-                        widget.activityType.icon,
-                        style: TextStyle(fontSize: 20.sp),
+                      SizedBox(width: 12.w),
+                      Flexible(
+                        child: Text(
+                          '${widget.activityType.displayName} Progress',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? AppTheme.darkTextColor
+                                : AppTheme.lightTextColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 12.w),
-                    Text(
-                      '${widget.activityType.displayName} Progress',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+                SizedBox(width: 8.w),
                 ToggleButtons(
                   isSelected: [_showWeekly, !_showWeekly],
                   onPressed: (index) {
@@ -76,16 +84,19 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
                     });
                   },
                   borderRadius: BorderRadius.circular(8.r),
+                  borderWidth: 1.5,
+                  borderColor: AppTheme.primaryColor.withValues(alpha: 0.3),
+                  selectedBorderColor: AppTheme.primaryColor,
                   selectedColor: Colors.white,
                   fillColor: AppTheme.primaryColor,
                   color: AppTheme.primaryColor,
                   constraints: BoxConstraints(
-                    minWidth: 60.w,
+                    minWidth: 55.w,
                     minHeight: 32.h,
                   ),
                   children: [
-                    Text('Week', style: TextStyle(fontSize: 12.sp)),
-                    Text('Month', style: TextStyle(fontSize: 12.sp)),
+                    Text('Week', style: TextStyle(fontSize: 11.sp)),
+                    Text('Month', style: TextStyle(fontSize: 11.sp)),
                   ],
                 ),
               ],
@@ -104,10 +115,10 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
   }
 
   Widget _buildChart() {
-    final data = _showWeekly 
+    final data = _showWeekly
         ? widget.activityProvider.getWeeklyData(widget.activityType)
         : widget.activityProvider.getMonthlyData(widget.activityType);
-    
+
     if (data.isEmpty) {
       return Center(
         child: Column(
@@ -153,8 +164,10 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
         ),
         titlesData: FlTitlesData(
           show: true,
-          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles:
+              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles:
+              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -165,7 +178,11 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
                   return Padding(
                     padding: EdgeInsets.only(top: 8.h),
                     child: Text(
-                      _showWeekly ? key : key.length > 2 ? key.substring(0, 2) : key,
+                      _showWeekly
+                          ? key
+                          : key.length > 2
+                              ? key.substring(0, 2)
+                              : key,
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: Colors.grey[600],
@@ -215,7 +232,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
   Widget _buildLegend() {
     final goal = _getGoal();
     final currentAverage = _getCurrentAverage();
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -308,36 +325,36 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
   }
 
   double _getMaxY() {
-    final data = _showWeekly 
+    final data = _showWeekly
         ? widget.activityProvider.getWeeklyData(widget.activityType)
         : widget.activityProvider.getMonthlyData(widget.activityType);
-    
+
     if (data.isEmpty) return 10;
-    
+
     final maxValue = data.values.reduce((a, b) => a > b ? a : b);
     final goal = _getGoal();
-    
+
     return (maxValue > goal ? maxValue : goal) * 1.2;
   }
 
   double _getCurrentAverage() {
-    final data = _showWeekly 
+    final data = _showWeekly
         ? widget.activityProvider.getWeeklyData(widget.activityType)
         : widget.activityProvider.getMonthlyData(widget.activityType);
-    
+
     if (data.isEmpty) return 0;
-    
+
     final total = data.values.reduce((a, b) => a + b);
     return total / data.length;
   }
 
   double _getBestValue() {
-    final data = _showWeekly 
+    final data = _showWeekly
         ? widget.activityProvider.getWeeklyData(widget.activityType)
         : widget.activityProvider.getMonthlyData(widget.activityType);
-    
+
     if (data.isEmpty) return 0;
-    
+
     return data.values.reduce((a, b) => a > b ? a : b);
   }
 }

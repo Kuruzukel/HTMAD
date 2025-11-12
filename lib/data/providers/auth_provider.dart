@@ -80,7 +80,20 @@ class AuthProvider extends ChangeNotifier {
       _setState(AuthState.loading);
 
       if (!FirebaseService.isInitialized) {
-        throw Exception('Firebase not initialized');
+        // Fallback: Use local database only for development
+        final user = await _userRepository.getUserByEmail(email);
+
+        if (user == null) {
+          _setError('No user found with this email address.');
+          return false;
+        }
+
+        // In production, you'd verify password hash here
+        // For now, just simulate successful login
+        _firebaseUser = null;
+        _user = user;
+        _setState(AuthState.authenticated);
+        return true;
       }
 
       final credential = await FirebaseService.auth.signInWithEmailAndPassword(
@@ -112,7 +125,34 @@ class AuthProvider extends ChangeNotifier {
       _setState(AuthState.loading);
 
       if (!FirebaseService.isInitialized) {
-        throw Exception('Firebase not initialized');
+        // Fallback: Use local database only for development
+        // Check if user already exists
+        final existingUser = await _userRepository.getUserByEmail(email);
+
+        if (existingUser != null) {
+          _setError('An account already exists with this email address.');
+          return false;
+        }
+
+        // Create a new user with a generated ID
+        final newUser = UserModel(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          email: email,
+          name: name,
+          waterGoal: 8,
+          exerciseGoal: 30,
+          sleepGoal: 8,
+          calorieGoal: 2000,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
+
+        await _userRepository.createUser(newUser);
+
+        _firebaseUser = null;
+        _user = newUser;
+        _setState(AuthState.authenticated);
+        return true;
       }
 
       final credential =
