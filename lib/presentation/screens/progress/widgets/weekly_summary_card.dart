@@ -41,8 +41,8 @@ class WeeklySummaryCard extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              _getActivityColor().withOpacity(0.1),
-              _getActivityColor().withOpacity(0.05),
+              _getActivityColor().withValues(alpha: 0.1),
+              _getActivityColor().withValues(alpha: 0.05),
             ],
           ),
         ),
@@ -56,7 +56,7 @@ class WeeklySummaryCard extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(12.w),
                     decoration: BoxDecoration(
-                      color: _getActivityColor().withOpacity(0.2),
+                      color: _getActivityColor().withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
@@ -189,7 +189,7 @@ class WeeklySummaryCard extends StatelessWidget {
                   width: 32.w,
                   height: 60.h,
                   decoration: BoxDecoration(
-                    color: _getActivityColor().withOpacity(0.1),
+                    color: _getActivityColor().withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: Stack(

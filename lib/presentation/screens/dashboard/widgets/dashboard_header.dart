@@ -20,7 +20,7 @@ class DashboardHeader extends StatelessWidget {
     final dateString = DateFormat('EEEE, MMMM d').format(now);
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -47,7 +47,7 @@ class DashboardHeader extends StatelessWidget {
                           '$greeting,',
                           style: TextStyle(
                             fontSize: 16.sp,
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -66,7 +66,7 @@ class DashboardHeader extends StatelessWidget {
                           dateString,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.white.withOpacity(0.8),
+                            color: Colors.white.withValues(alpha: 0.8),
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -77,10 +77,10 @@ class DashboardHeader extends StatelessWidget {
                     width: 60.w,
                     height: 60.w,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(30.r),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white.withValues(alpha: 0.3),
                         width: 2,
                       ),
                     ),
@@ -103,10 +103,10 @@ class DashboardHeader extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.15),
+                  color: Colors.white.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     width: 1,
                   ),
                 ),

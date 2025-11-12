@@ -68,7 +68,7 @@ class AchievementsCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(8.w),
                   decoration: BoxDecoration(
-                    color: AppTheme.warningColor.withOpacity(0.1),
+                    color: AppTheme.warningColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Icon(
@@ -90,7 +90,7 @@ class AchievementsCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                   decoration: BoxDecoration(
-                    color: AppTheme.secondaryColor.withOpacity(0.1),
+                    color: AppTheme.secondaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
@@ -168,12 +168,12 @@ class AchievementsCard extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: unlocked 
-            ? AppTheme.secondaryColor.withOpacity(0.1)
+            ? AppTheme.secondaryColor.withValues(alpha: 0.1)
             : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
           color: unlocked 
-              ? AppTheme.secondaryColor.withOpacity(0.3)
+              ? AppTheme.secondaryColor.withValues(alpha: 0.3)
               : Colors.grey.shade300,
           width: 1,
         ),
@@ -185,7 +185,7 @@ class AchievementsCard extends StatelessWidget {
             height: 50.w,
             decoration: BoxDecoration(
               color: unlocked 
-                  ? AppTheme.secondaryColor.withOpacity(0.2)
+                  ? AppTheme.secondaryColor.withValues(alpha: 0.2)
                   : Colors.grey.shade200,
               borderRadius: BorderRadius.circular(25.r),
             ),

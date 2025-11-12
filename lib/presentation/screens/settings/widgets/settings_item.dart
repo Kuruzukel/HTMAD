@@ -45,7 +45,7 @@ class SettingsItem extends StatelessWidget {
                 width: 40.w,
                 height: 40.w,
                 decoration: BoxDecoration(
-                  color: effectiveIconColor.withOpacity(0.1),
+                  color: effectiveIconColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Icon(

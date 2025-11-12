@@ -251,7 +251,7 @@ class _AddActivityScreenState extends State<AddActivityScreen> {
               width: 80.w,
               height: 80.w,
               decoration: BoxDecoration(
-                color: _getActivityColor().withOpacity(0.1),
+                color: _getActivityColor().withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(40.r),
               ),
               child: Center(

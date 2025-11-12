@@ -93,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
         color: isDark ? AppTheme.darkSurfaceColor : AppTheme.lightSurfaceColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, -5),
           ),
@@ -156,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         decoration: BoxDecoration(
           color: isActive 
-              ? AppTheme.primaryColor.withOpacity(0.1)
+              ? AppTheme.primaryColor.withValues(alpha: 0.1)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(20.r),
         ),

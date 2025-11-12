@@ -71,7 +71,7 @@ class RecentActivitiesCard extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: EdgeInsets.all(20.h),
-                  child: CircularProgressIndicator(
+                  child: const CircularProgressIndicator(
                     color: AppTheme.primaryColor,
                   ),
                 ),
@@ -134,10 +134,10 @@ class RecentActivitiesCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -147,7 +147,7 @@ class RecentActivitiesCard extends StatelessWidget {
             width: 40.w,
             height: 40.w,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Center(

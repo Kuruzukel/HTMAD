@@ -49,7 +49,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
                     Container(
                       padding: EdgeInsets.all(8.w),
                       decoration: BoxDecoration(
-                        color: _getActivityColor().withOpacity(0.1),
+                        color: _getActivityColor().withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Text(

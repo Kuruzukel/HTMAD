@@ -222,37 +222,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         SizedBox(height: 8.h),
-        Row(
-          children: [
-            Expanded(
-              child: RadioListTile<String>(
-                title: const Text('Male'),
-                value: 'Male',
-                groupValue: _selectedGender,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedGender = value;
-                  });
-                },
-                contentPadding: EdgeInsets.zero,
-                activeColor: AppTheme.primaryColor,
+        RadioGroup<String>(
+          groupValue: _selectedGender,
+          onChanged: (value) {
+            setState(() {
+              _selectedGender = value;
+            });
+          },
+          child: const Row(
+            children: [
+              Expanded(
+                child: RadioListTile<String>(
+                  title: Text('Male'),
+                  value: 'Male',
+                  contentPadding: EdgeInsets.zero,
+                  activeColor: AppTheme.primaryColor,
+                ),
               ),
-            ),
-            Expanded(
-              child: RadioListTile<String>(
-                title: const Text('Female'),
-                value: 'Female',
-                groupValue: _selectedGender,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedGender = value;
-                  });
-                },
-                contentPadding: EdgeInsets.zero,
-                activeColor: AppTheme.primaryColor,
+              Expanded(
+                child: RadioListTile<String>(
+                  title: Text('Female'),
+                  value: 'Female',
+                  contentPadding: EdgeInsets.zero,
+                  activeColor: AppTheme.primaryColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

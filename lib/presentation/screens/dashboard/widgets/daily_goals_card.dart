@@ -151,7 +151,7 @@ class DailyGoalsCard extends StatelessWidget {
         SizedBox(height: 8.h),
         LinearProgressIndicator(
           value: progress,
-          backgroundColor: color.withOpacity(0.2),
+          backgroundColor: color.withValues(alpha: 0.2),
           valueColor: AlwaysStoppedAnimation<Color>(color),
           minHeight: 6.h,
           borderRadius: BorderRadius.circular(3.r),

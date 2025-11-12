@@ -260,14 +260,16 @@ class _ActivitiesScreenState extends State<ActivitiesScreen>
           ),
           TextButton(
             onPressed: () async {
-              Navigator.of(context).pop();
+              final navigator = Navigator.of(context);
+              final messenger = ScaffoldMessenger.of(context);
+              navigator.pop();
               final activityProvider =
                   Provider.of<ActivityProvider>(context, listen: false);
               final success =
                   await activityProvider.deleteActivity(activity.id);
 
               if (success && mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
+                messenger.showSnackBar(
                   const SnackBar(
                     content: Text('Activity deleted successfully'),
                     backgroundColor: AppTheme.secondaryColor,

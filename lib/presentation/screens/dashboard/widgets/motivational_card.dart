@@ -68,8 +68,8 @@ class MotivationalCard extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.secondaryColor.withOpacity(0.1),
-              AppTheme.primaryColor.withOpacity(0.1),
+              AppTheme.secondaryColor.withValues(alpha: 0.1),
+              AppTheme.primaryColor.withValues(alpha: 0.1),
             ],
           ),
         ),
@@ -83,7 +83,7 @@ class MotivationalCard extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(8.w),
                     decoration: BoxDecoration(
-                      color: AppTheme.secondaryColor.withOpacity(0.2),
+                      color: AppTheme.secondaryColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Icon(
@@ -107,10 +107,10 @@ class MotivationalCard extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(isDark ? 0.05 : 0.7),
+                  color: Colors.white.withValues(alpha: isDark ? 0.05 : 0.7),
                   borderRadius: BorderRadius.circular(12.r),
                   border: Border.all(
-                    color: AppTheme.secondaryColor.withOpacity(0.2),
+                    color: AppTheme.secondaryColor.withValues(alpha: 0.2),
                     width: 1,
                   ),
                 ),
@@ -119,7 +119,7 @@ class MotivationalCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.format_quote,
-                      color: AppTheme.secondaryColor.withOpacity(0.6),
+                      color: AppTheme.secondaryColor.withValues(alpha: 0.6),
                       size: 24.sp,
                     ),
                     SizedBox(height: 8.h),
