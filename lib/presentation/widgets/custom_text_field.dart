@@ -26,6 +26,7 @@ class CustomTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final bool autofocus;
   final TextCapitalization textCapitalization;
+  final bool useAuthColors;
 
   const CustomTextField({
     super.key,
@@ -50,6 +51,7 @@ class CustomTextField extends StatefulWidget {
     this.focusNode,
     this.autofocus = false,
     this.textCapitalization = TextCapitalization.none,
+    this.useAuthColors = false,
   });
 
   @override
@@ -97,7 +99,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
-              color: Colors.white,
+              color: widget.useAuthColors
+                  ? Colors.white
+                  : (isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor),
             ),
           ),
           SizedBox(height: 8.h),
@@ -141,46 +145,66 @@ class _CustomTextFieldState extends State<CustomTextField> {
             textCapitalization: widget.textCapitalization,
             style: TextStyle(
               fontSize: 16.sp,
-              color: Colors.white,
+              color: widget.useAuthColors
+                  ? Colors.white
+                  : (isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor),
               fontFamily: 'Poppins',
             ),
             decoration: InputDecoration(
               hintText: widget.hint,
               hintStyle: TextStyle(
                 fontSize: 16.sp,
-                color: Colors.white.withValues(alpha: 0.6),
+                color: widget.useAuthColors
+                    ? Colors.white.withValues(alpha: 0.6)
+                    : (isDark
+                        ? AppTheme.darkTextSecondaryColor
+                        : AppTheme.lightTextSecondaryColor),
                 fontFamily: 'Poppins',
               ),
               prefixIcon: widget.prefixIcon != null
                   ? Icon(
                       widget.prefixIcon,
-                      color: _isFocused
-                          ? Colors.white
-                          : Colors.white.withValues(alpha: 0.7),
+                      color: widget.useAuthColors
+                          ? (_isFocused
+                              ? Colors.white
+                              : Colors.white.withValues(alpha: 0.7))
+                          : (isDark
+                              ? AppTheme.darkTextSecondaryColor
+                              : AppTheme.lightTextSecondaryColor),
                       size: 20.sp,
                     )
                   : null,
               suffixIcon: widget.suffixIcon,
               filled: true,
-              fillColor: Colors.white.withValues(alpha: 0.15),
+              fillColor: widget.useAuthColors
+                  ? Colors.white.withValues(alpha: 0.15)
+                  : (isDark
+                      ? AppTheme.darkSurfaceColor
+                      : AppTheme.lightSurfaceColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide(
-                  color: Colors.white.withValues(alpha: 0.4),
+                  color: widget.useAuthColors
+                      ? Colors.white.withValues(alpha: 0.4)
+                      : Colors.grey.shade300,
                   width: 1.5,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide(
-                  color: Colors.white.withValues(alpha: 0.4),
+                  color: widget.useAuthColors
+                      ? Colors.white.withValues(alpha: 0.4)
+                      : Colors.grey.shade300,
                   width: 1.5,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide(
-                  color: Colors.white.withValues(alpha: 0.8),
+                  color: widget.useAuthColors
+                      ? Colors.white.withValues(alpha: 0.8)
+                      : AppTheme.primaryColor,
                   width: 2,
                 ),
               ),
@@ -217,7 +241,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               errorStyle: TextStyle(
                 fontSize: 12.sp,
-                color: Colors.white,
+                color: widget.useAuthColors
+                    ? Colors.white
+                    : AppTheme.accentColor,
                 fontFamily: 'Poppins',
               ),
             ),

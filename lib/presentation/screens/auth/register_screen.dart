@@ -321,6 +321,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               hint: 'Enter your full name',
               prefixIcon: Icons.person_outline,
               textCapitalization: TextCapitalization.words,
+              useAuthColors: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your name';
@@ -338,6 +339,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               hint: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
               prefixIcon: Icons.email_outlined,
+              useAuthColors: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -355,9 +357,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               hint: 'Enter your password',
               obscureText: _obscurePassword,
               prefixIcon: Icons.lock_outline,
+              useAuthColors: true,
               suffixIcon: IconButton(
                 icon: Icon(
-                  _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
                   color: Colors.black,
                 ),
                 onPressed: () {
@@ -383,9 +386,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               hint: 'Confirm your password',
               obscureText: _obscureConfirmPassword,
               prefixIcon: Icons.lock_outline,
+              useAuthColors: true,
               suffixIcon: IconButton(
                 icon: Icon(
-                  _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                  _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
                   color: Colors.black,
                 ),
                 onPressed: () {

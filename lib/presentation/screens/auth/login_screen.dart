@@ -294,6 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hint: 'Enter your email',
                   keyboardType: TextInputType.emailAddress,
                   prefixIcon: Icons.email_outlined,
+                  useAuthColors: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
@@ -312,11 +313,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   hint: 'Enter your password',
                   obscureText: _obscurePassword,
                   prefixIcon: Icons.lock_outline,
+                  useAuthColors: true,
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                       color: Colors.black,
                     ),
                     onPressed: () {

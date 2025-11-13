@@ -311,6 +311,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               hint: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
               prefixIcon: Icons.email_outlined,
+              useAuthColors: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';

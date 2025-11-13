@@ -172,10 +172,17 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
             sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 35.h,
+              interval: _showWeekly ? null : 5,
               getTitlesWidget: (value, meta) {
                 final keys = data.keys.toList();
                 if (value.toInt() >= 0 && value.toInt() < keys.length) {
                   final key = keys[value.toInt()];
+                  
+                  // For monthly view, show every 5th day to avoid crowding
+                  if (!_showWeekly && value.toInt() % 5 != 0) {
+                    return const SizedBox.shrink();
+                  }
+                  
                   return Padding(
                     padding: EdgeInsets.only(top: 8.h),
                     child: Text(
@@ -185,7 +192,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
                               ? key.substring(0, 2)
                               : key,
                       style: TextStyle(
-                        fontSize: 11.sp,
+                        fontSize: _showWeekly ? 11.sp : 10.sp,
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w500,
                       ),
