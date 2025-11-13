@@ -252,7 +252,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
         _buildLegendItem(
           'Goal',
           '$goal ${_getUnit()}',
-          AppTheme.secondaryColor,
+          AppTheme.primaryColor,
         ),
         _buildLegendItem(
           'Average',
