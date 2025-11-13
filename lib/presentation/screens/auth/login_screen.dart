@@ -392,7 +392,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           : _handleLogin,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: const Color(0xFF4A90E2), // Blue color
+                    foregroundColor: const Color(0xFF50C878), // Green color
                     padding: EdgeInsets.symmetric(vertical: 18.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.r),
@@ -405,7 +405,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 24,
                               width: 24,
                               child: CircularProgressIndicator(
-                                color: Color(0xFF4A90E2), // Blue color
+                                color: Color(0xFF50C878), // Green color
                                 strokeWidth: 2.5,
                               ),
                             )

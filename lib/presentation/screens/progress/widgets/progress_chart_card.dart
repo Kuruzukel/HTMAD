@@ -103,7 +103,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
             ),
             SizedBox(height: 24.h),
             SizedBox(
-              height: 200.h,
+              height: 250.h,
               child: _buildChart(),
             ),
             SizedBox(height: 16.h),
@@ -171,6 +171,7 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
+              reservedSize: 35.h,
               getTitlesWidget: (value, meta) {
                 final keys = data.keys.toList();
                 if (value.toInt() >= 0 && value.toInt() < keys.length) {
@@ -184,8 +185,9 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
                               ? key.substring(0, 2)
                               : key,
                       style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 11.sp,
                         color: Colors.grey[600],
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   );
@@ -197,13 +199,17 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 40.w,
+              reservedSize: 45.w,
               getTitlesWidget: (value, meta) {
-                return Text(
-                  value.toInt().toString(),
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Colors.grey[600],
+                return Padding(
+                  padding: EdgeInsets.only(right: 4.w),
+                  child: Text(
+                    value.toInt().toString(),
+                    style: TextStyle(
+                      fontSize: 11.sp,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 );
               },

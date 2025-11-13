@@ -374,7 +374,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   onPressed: context.watch<AuthProvider>().state == AuthState.loading ? null : _handleResetPassword,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: AppTheme.primaryColor,
+                    foregroundColor: const Color(0xFF50C878), // Green color
                     padding: EdgeInsets.symmetric(vertical: 18.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.r),
@@ -382,11 +382,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     elevation: 0,
                   ),
                   child: context.watch<AuthProvider>().state == AuthState.loading
-                      ? SizedBox(
-                          height: 24.h,
-                          width: 24.h,
-                          child: const CircularProgressIndicator(
-                            color: AppTheme.primaryColor,
+                      ? const SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF50C878), // Green color
                             strokeWidth: 2.5,
                           ),
                         )
