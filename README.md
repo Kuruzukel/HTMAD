@@ -365,31 +365,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🙏 Acknowledgments
-
-- [Flutter Team](https://flutter.dev/) - Amazing framework
-- [Firebase Team](https://firebase.google.com/) - Emulator suite
-- [Material Design](https://material.io/) - Design guidelines
-- Open source community - Packages and support
-
----
-
-## 📞 Support
-
-Need help? We're here for you!
-
-- 🐛 **Report Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- 📧 **Email**: support@healthtracker.com
-- 📚 **Documentation**: [Link to docs]
-
----
-
 <div align="center">
 
-
-**KEL EMMAN AERON**
-
----
-
+**Developers: KEL EMMAN AERON**
 
 </div>

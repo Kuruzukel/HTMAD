@@ -219,10 +219,19 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              'Built with ❤️ using Flutter',
+              'Developed using Flutter',
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              'Developers: Kel, Emman, Aeron',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                color: AppTheme.primaryColor,
               ),
             ),
             SizedBox(height: 8.h),
