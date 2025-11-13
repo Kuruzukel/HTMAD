@@ -20,19 +20,26 @@ class DashboardHeader extends StatelessWidget {
     final dateString = DateFormat('EEEE, MMMM d').format(now);
 
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(28.r),
+          bottomRight: Radius.circular(28.r),
+        ),
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
+            AppTheme.primaryLightColor,
             AppTheme.primaryColor,
             AppTheme.primaryDarkColor,
           ],
         ),
       ),
       child: SafeArea(
+        bottom: false,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 24.h),
+          padding: EdgeInsets.fromLTRB(16.w, 28.h, 16.w, 10.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,28 +53,28 @@ class DashboardHeader extends StatelessWidget {
                         Text(
                           '$greeting,',
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 18.sp,
                             color: Colors.white.withValues(alpha: 0.9),
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(height: 4.h),
+                        SizedBox(height: 6.h),
                         Text(
                           user.name,
                           style: TextStyle(
-                            fontSize: 24.sp,
+                            fontSize: 30.sp,
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 4.h),
+                        SizedBox(height: 6.h),
                         Text(
                           dateString,
                           style: TextStyle(
-                            fontSize: 14.sp,
-                            color: Colors.white.withValues(alpha: 0.8),
-                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                            color: Colors.white.withValues(alpha: 0.85),
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -86,9 +93,7 @@ class DashboardHeader extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        user.name.isNotEmpty 
-                            ? user.name[0].toUpperCase()
-                            : 'U',
+                        user.name.isNotEmpty ? user.name[0].toUpperCase() : 'U',
                         style: TextStyle(
                           fontSize: 24.sp,
                           color: Colors.white,
@@ -101,7 +106,7 @@ class DashboardHeader extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               Container(
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 16.h),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16.r),
@@ -122,10 +127,10 @@ class DashboardHeader extends StatelessWidget {
                       child: Text(
                         'Keep up the great work! Your health journey is making a difference.',
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 17.sp,
                           color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          height: 1.3,
+                          fontWeight: FontWeight.w600,
+                          height: 1.4,
                         ),
                       ),
                     ),
@@ -141,7 +146,7 @@ class DashboardHeader extends StatelessWidget {
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
-    
+
     if (hour < 12) {
       return 'Good morning';
     } else if (hour < 17) {

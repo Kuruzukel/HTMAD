@@ -177,17 +177,6 @@ class SettingsScreen extends StatelessWidget {
           title: 'Data & Privacy',
           children: [
             SettingsItem(
-              icon: Icons.backup,
-              title: 'Data Backup',
-              subtitle:
-                  settingsProvider.dataBackupEnabled ? 'Enabled' : 'Disabled',
-              trailing: Switch(
-                value: settingsProvider.dataBackupEnabled,
-                onChanged: settingsProvider.setDataBackupEnabled,
-                activeThumbColor: AppTheme.primaryColor,
-              ),
-            ),
-            SettingsItem(
               icon: Icons.download,
               title: 'Export Data',
               subtitle: 'Download your health data',

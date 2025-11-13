@@ -98,6 +98,8 @@ class _ActivitiesScreenState extends State<ActivitiesScreen>
 
   @override
   Widget build(BuildContext context) {
+    final bottomOffset = MediaQuery.of(context).padding.bottom + 16.h;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Activities'),
@@ -149,10 +151,35 @@ class _ActivitiesScreenState extends State<ActivitiesScreen>
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _navigateToAddActivity,
-        backgroundColor: AppTheme.primaryColor,
-        child: const Icon(Icons.add, color: Colors.white),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(
+          right: 16.w,
+          bottom: bottomOffset,
+        ),
+        child: GestureDetector(
+          onTap: _navigateToAddActivity,
+          child: Container(
+            width: 46.w,
+            height: 46.w,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 16,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Icon(
+              Icons.add,
+              color: AppTheme.primaryColor,
+              size: 26.sp,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -184,48 +211,57 @@ class _ActivitiesScreenState extends State<ActivitiesScreen>
   }
 
   Widget _buildEmptyState() {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.all(32.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.fitness_center_outlined,
-              size: 64.sp,
-              color: Colors.grey[400],
-            ),
-            SizedBox(height: 24.h),
-            Text(
-              _selectedFilter != null
-                  ? 'No ${_selectedFilter!.displayName.toLowerCase()} activities yet'
-                  : 'No activities yet',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.grey[600],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 40.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.fitness_center_outlined,
+                    size: 64.sp,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(height: 24.h),
+                  Text(
+                    _selectedFilter != null
+                        ? 'No ${_selectedFilter!.displayName.toLowerCase()} activities yet'
+                        : 'No activities yet',
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 12.h),
+                  Text(
+                    'Start tracking your health activities to see them here',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.grey[500],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 32.h),
+                  CustomButton(
+                    text: 'Add Activity',
+                    onPressed: _navigateToAddActivity,
+                    icon: Icons.add,
+                    width: 200.w,
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 12.h),
-            Text(
-              'Start tracking your health activities to see them here',
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: Colors.grey[500],
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 32.h),
-            CustomButton(
-              text: 'Add Activity',
-              onPressed: _navigateToAddActivity,
-              icon: Icons.add,
-              width: 200.w,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
