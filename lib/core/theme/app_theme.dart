@@ -7,9 +7,9 @@ import '../app_config.dart';
 
 class AppTheme {
   // Color Palette
-  static const Color primaryColor = Color(0xFF4A90E2);
-  static const Color primaryDarkColor = Color(0xFF357ABD);
-  static const Color secondaryColor = Color(0xFF50C878);
+  static const Color primaryColor = Color(0xFF50C878); // Emerald green
+  static const Color primaryDarkColor = Color(0xFF3DA861); // Darker emerald
+  static const Color secondaryColor = Color(0xFF4A90E2);
   static const Color accentColor = Color(0xFFFF6B6B);
   static const Color warningColor = Color(0xFFFFB347);
 
