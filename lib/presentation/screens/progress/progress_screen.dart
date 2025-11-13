@@ -8,7 +8,6 @@ import '../../../data/providers/activity_provider.dart';
 import '../../../data/models/activity_model.dart';
 import 'widgets/progress_chart_card.dart';
 import 'widgets/weekly_summary_card.dart';
-import 'widgets/achievements_card.dart';
 
 class ProgressScreen extends StatefulWidget {
   const ProgressScreen({super.key});
@@ -37,8 +36,9 @@ class _ProgressScreenState extends State<ProgressScreen>
 
   void _loadData() {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final activityProvider = Provider.of<ActivityProvider>(context, listen: false);
-    
+    final activityProvider =
+        Provider.of<ActivityProvider>(context, listen: false);
+
     if (authProvider.user != null) {
       activityProvider.loadActivities(authProvider.user!.id);
     }
@@ -96,8 +96,6 @@ class _ProgressScreenState extends State<ProgressScreen>
                     activityType: _selectedType,
                     user: authProvider.user!,
                   ),
-                  SizedBox(height: 16.h),
-                  const AchievementsCard(),
                   SizedBox(height: 100.h), // Bottom padding for navigation bar
                 ],
               ),

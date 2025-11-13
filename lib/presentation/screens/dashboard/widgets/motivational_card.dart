@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math';
 
 import '../../../../core/theme/app_theme.dart';
+import '../../../widgets/glassmorphism_container.dart';
 
 class MotivationalCard extends StatelessWidget {
   const MotivationalCard({super.key});
@@ -56,123 +57,157 @@ class MotivationalCard extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
     final quote = _getRandomQuote();
 
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r),
+    return GlassmorphismContainer(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: isDark
+            ? [
+                AppTheme.secondaryColor.withValues(alpha: 0.15),
+                AppTheme.primaryColor.withValues(alpha: 0.15),
+              ]
+            : [
+                AppTheme.secondaryColor.withValues(alpha: 0.2),
+                AppTheme.primaryColor.withValues(alpha: 0.2),
+              ],
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppTheme.secondaryColor.withValues(alpha: 0.1),
-              AppTheme.primaryColor.withValues(alpha: 0.1),
+      padding: EdgeInsets.all(24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(12.w),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppTheme.secondaryColor.withValues(alpha: 0.3),
+                      AppTheme.primaryColor.withValues(alpha: 0.3),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                child: Icon(
+                  Icons.lightbulb,
+                  color: AppTheme.secondaryColor,
+                  size: 24.sp,
+                ),
+              ),
+              SizedBox(width: 16.w),
+              Text(
+                'Daily Motivation',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+                  letterSpacing: 0.5,
+                ),
+              ),
             ],
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(8.w),
+          SizedBox(height: 20.h),
+          Container(
+            padding: EdgeInsets.all(20.w),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: isDark
+                    ? [
+                        Colors.white.withValues(alpha: 0.08),
+                        Colors.white.withValues(alpha: 0.04),
+                      ]
+                    : [
+                        Colors.white.withValues(alpha: 0.9),
+                        Colors.white.withValues(alpha: 0.7),
+                      ],
+              ),
+              borderRadius: BorderRadius.circular(16.r),
+              border: Border.all(
+                color: AppTheme.secondaryColor.withValues(alpha: 0.3),
+                width: 1.5,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.format_quote,
+                  color: AppTheme.secondaryColor.withValues(alpha: 0.7),
+                  size: 32.sp,
+                ),
+                SizedBox(height: 12.h),
+                Text(
+                  quote['quote']!,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontStyle: FontStyle.italic,
+                    color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+                    height: 1.5,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                     decoration: BoxDecoration(
                       color: AppTheme.secondaryColor.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(8.r),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
-                    child: Icon(
-                      Icons.lightbulb_outline,
-                      color: AppTheme.secondaryColor,
-                      size: 20.sp,
-                    ),
-                  ),
-                  SizedBox(width: 12.w),
-                  Text(
-                    'Daily Motivation',
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.h),
-              Container(
-                padding: EdgeInsets.all(16.w),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: isDark ? 0.05 : 0.7),
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(
-                    color: AppTheme.secondaryColor.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.format_quote,
-                      color: AppTheme.secondaryColor.withValues(alpha: 0.6),
-                      size: 24.sp,
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      quote['quote']!,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontStyle: FontStyle.italic,
-                        color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
-                        height: 1.4,
-                      ),
-                    ),
-                    SizedBox(height: 12.h),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        '— ${quote['author']}',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
-                          color: AppTheme.secondaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.h),
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 16.sp,
-                  ),
-                  SizedBox(width: 8.w),
-                  Expanded(
                     child: Text(
-                      'Remember: Small consistent actions lead to big results!',
+                      '— ${quote['author']}',
                       style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: isDark 
-                            ? AppTheme.darkTextSecondaryColor 
-                            : AppTheme.lightTextSecondaryColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.secondaryColor,
+                        letterSpacing: 0.3,
                       ),
                     ),
                   ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20.h),
+          Container(
+            padding: EdgeInsets.all(14.w),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.amber.withValues(alpha: 0.2),
+                  Colors.orange.withValues(alpha: 0.1),
                 ],
               ),
-            ],
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(
+                color: Colors.amber.withValues(alpha: 0.4),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.auto_awesome,
+                  color: Colors.amber[700],
+                  size: 20.sp,
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: Text(
+                    'Small consistent actions lead to big results!',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+                      letterSpacing: 0.2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

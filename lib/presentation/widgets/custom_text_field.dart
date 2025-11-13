@@ -97,7 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
-              color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 8.h),
@@ -141,56 +141,46 @@ class _CustomTextFieldState extends State<CustomTextField> {
             textCapitalization: widget.textCapitalization,
             style: TextStyle(
               fontSize: 16.sp,
-              color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+              color: Colors.white,
               fontFamily: 'Poppins',
             ),
             decoration: InputDecoration(
               hintText: widget.hint,
               hintStyle: TextStyle(
                 fontSize: 16.sp,
-                color: isDark 
-                    ? AppTheme.darkTextSecondaryColor 
-                    : AppTheme.lightTextSecondaryColor,
+                color: Colors.white.withValues(alpha: 0.6),
                 fontFamily: 'Poppins',
               ),
               prefixIcon: widget.prefixIcon != null
                   ? Icon(
                       widget.prefixIcon,
                       color: _isFocused
-                          ? AppTheme.primaryColor
-                          : (isDark 
-                              ? AppTheme.darkTextSecondaryColor 
-                              : AppTheme.lightTextSecondaryColor),
+                          ? Colors.white
+                          : Colors.white.withValues(alpha: 0.7),
                       size: 20.sp,
                     )
                   : null,
               suffixIcon: widget.suffixIcon,
               filled: true,
-              fillColor: isDark 
-                  ? AppTheme.darkSurfaceColor 
-                  : AppTheme.lightSurfaceColor,
+              fillColor: Colors.white.withValues(alpha: 0.15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide(
-                  color: isDark 
-                      ? Colors.grey.shade600 
-                      : Colors.grey.shade300,
+                  color: Colors.white.withValues(alpha: 0.4),
                   width: 1.5,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide(
-                  color: isDark 
-                      ? Colors.grey.shade600 
-                      : Colors.grey.shade300,
+                  color: Colors.white.withValues(alpha: 0.4),
                   width: 1.5,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(
-                  color: AppTheme.primaryColor,
+                borderSide: BorderSide(
+                  color: Colors.white.withValues(alpha: 0.8),
                   width: 2,
                 ),
               ),
@@ -227,7 +217,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               errorStyle: TextStyle(
                 fontSize: 12.sp,
-                color: AppTheme.accentColor,
+                color: Colors.white,
                 fontFamily: 'Poppins',
               ),
             ),

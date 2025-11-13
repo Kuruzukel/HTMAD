@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/app_theme.dart';
 import '../../../data/providers/auth_provider.dart';
 import '../auth/login_screen.dart';
 import '../main/main_screen.dart';
@@ -97,103 +96,184 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primaryColor,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppTheme.primaryColor,
-              AppTheme.primaryDarkColor,
-            ],
+      body: Stack(
+        children: [
+          // Clean Green Background
+          Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFF50C878), // Emerald green
+            ),
           ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: _scaleAnimation.value,
-                    child: FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: Container(
-                        width: 120.w,
-                        height: 120.w,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(30.r),
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.3),
-                            width: 2,
-                          ),
-                        ),
-                        child: Icon(
-                          Icons.favorite,
-                          size: 60.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+          
+          // Decorative Orbs and Curls
+          Positioned(
+            top: -100,
+            right: -100,
+            child: Container(
+              width: 300.w,
+              height: 300.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.1),
               ),
-              SizedBox(height: 32.h),
-              AnimatedBuilder(
-                animation: _fadeAnimation,
-                builder: (context, child) {
-                  return FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: Column(
-                      children: [
-                        Text(
-                          'Health Tracker',
-                          style: TextStyle(
-                            fontSize: 32.sp,
-                            fontWeight: FontWeight.bold,
+            ),
+          ),
+          Positioned(
+            top: 150.h,
+            left: -80,
+            child: Container(
+              width: 200.w,
+              height: 200.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.08),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -50,
+            left: -50,
+            child: Container(
+              width: 250.w,
+              height: 250.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.12),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 100.h,
+            right: -60,
+            child: Container(
+              width: 180.w,
+              height: 180.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.07),
+              ),
+            ),
+          ),
+          
+          // Curved shapes
+          Positioned(
+            top: 200.h,
+            right: -100,
+            child: Transform.rotate(
+              angle: 0.5,
+              child: Container(
+                width: 200.w,
+                height: 100.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50.r),
+                  color: Colors.white.withValues(alpha: 0.05),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 200.h,
+            left: -80,
+            child: Transform.rotate(
+              angle: -0.3,
+              child: Container(
+                width: 180.w,
+                height: 90.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(45.r),
+                  color: Colors.white.withValues(alpha: 0.06),
+                ),
+              ),
+            ),
+          ),
+          
+          // Main Content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _scaleAnimation.value,
+                      child: FadeTransition(
+                        opacity: _fadeAnimation,
+                        child: Container(
+                          width: 120.w,
+                          height: 120.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(30.r),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.3),
+                              width: 2,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.favorite,
+                            size: 60.sp,
                             color: Colors.white,
-                            letterSpacing: 1.2,
                           ),
-                        ),
-                        SizedBox(height: 8.h),
-                        Text(
-                          'Your wellness companion',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.white.withValues(alpha: 0.9),
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 80.h),
-              AnimatedBuilder(
-                animation: _fadeAnimation,
-                builder: (context, child) {
-                  return FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: SizedBox(
-                      width: 40.w,
-                      height: 40.w,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 3,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.white.withValues(alpha: 0.8),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                ),
+                SizedBox(height: 32.h),
+                AnimatedBuilder(
+                  animation: _fadeAnimation,
+                  builder: (context, child) {
+                    return FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Column(
+                        children: [
+                          Text(
+                            'Health Tracker',
+                            style: TextStyle(
+                              fontSize: 32.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Text(
+                            'Your wellness companion',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 80.h),
+                AnimatedBuilder(
+                  animation: _fadeAnimation,
+                  builder: (context, child) {
+                    return FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: SizedBox(
+                        width: 40.w,
+                        height: 40.w,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white.withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

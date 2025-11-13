@@ -5,6 +5,7 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../data/models/activity_model.dart';
 import '../../../../data/models/user_model.dart';
 import '../../../../data/providers/activity_provider.dart';
+import '../../../widgets/glassmorphism_container.dart';
 
 class WeeklySummaryCard extends StatelessWidget {
   final UserModel user;
@@ -29,103 +30,108 @@ class WeeklySummaryCard extends StatelessWidget {
     final goal = _getGoal();
     final daysMetGoal = weeklyData.values.where((value) => value >= goal).length;
 
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r),
+    return GlassmorphismContainer(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: isDark
+            ? [
+                _getActivityColor().withValues(alpha: 0.15),
+                _getActivityColor().withValues(alpha: 0.08),
+              ]
+            : [
+                _getActivityColor().withValues(alpha: 0.2),
+                _getActivityColor().withValues(alpha: 0.12),
+              ],
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              _getActivityColor().withValues(alpha: 0.1),
-              _getActivityColor().withValues(alpha: 0.05),
-            ],
-          ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      padding: EdgeInsets.all(24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(12.w),
-                    decoration: BoxDecoration(
-                      color: _getActivityColor().withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Text(
-                      activityType.icon,
-                      style: TextStyle(fontSize: 24.sp),
-                    ),
+              Container(
+                padding: EdgeInsets.all(14.w),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      _getActivityColor().withValues(alpha: 0.3),
+                      _getActivityColor().withValues(alpha: 0.2),
+                    ],
                   ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'This Week\'s ${activityType.displayName}',
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                            color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
-                          ),
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          'Track your weekly progress',
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: isDark 
-                                ? AppTheme.darkTextSecondaryColor 
-                                : AppTheme.lightTextSecondaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
+                  borderRadius: BorderRadius.circular(16.r),
+                  border: Border.all(
+                    color: _getActivityColor().withValues(alpha: 0.4),
+                    width: 1,
                   ),
-                ],
+                ),
+                child: Text(
+                  activityType.icon,
+                  style: TextStyle(fontSize: 28.sp),
+                ),
               ),
-              SizedBox(height: 24.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildStatItem(
-                      'Total',
-                      '${totalThisWeek.toInt()}',
-                      _getUnit(),
-                      _getActivityColor(),
+              SizedBox(width: 16.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'This Week\'s ${activityType.displayName}',
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
+                        letterSpacing: 0.5,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _buildStatItem(
-                      'Daily Avg',
-                      '${averagePerDay.toInt()}',
-                      _getUnit(),
-                      AppTheme.secondaryColor,
+                    SizedBox(height: 4.h),
+                    Text(
+                      'Track your weekly progress',
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                        color: isDark 
+                            ? AppTheme.darkTextSecondaryColor 
+                            : AppTheme.lightTextSecondaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _buildStatItem(
-                      'Goals Met',
-                      '$daysMetGoal',
-                      'days',
-                      AppTheme.warningColor,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              SizedBox(height: 20.h),
-              _buildWeeklyProgress(weeklyData, goal),
             ],
           ),
-        ),
+          SizedBox(height: 24.h),
+          Row(
+            children: [
+              Expanded(
+                child: _buildStatItem(
+                  'Total',
+                  '${totalThisWeek.toInt()}',
+                  _getUnit(),
+                  _getActivityColor(),
+                ),
+              ),
+              Expanded(
+                child: _buildStatItem(
+                  'Daily Avg',
+                  '${averagePerDay.toInt()}',
+                  _getUnit(),
+                  AppTheme.secondaryColor,
+                ),
+              ),
+              Expanded(
+                child: _buildStatItem(
+                  'Goals Met',
+                  '$daysMetGoal',
+                  'days',
+                  AppTheme.warningColor,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20.h),
+          _buildWeeklyProgress(weeklyData, goal),
+        ],
       ),
     );
   }
@@ -244,13 +250,13 @@ class WeeklySummaryCard extends StatelessWidget {
   Color _getActivityColor() {
     switch (activityType) {
       case ActivityType.water:
-        return Colors.blue;
+        return const Color(0xFF4FC3F7);
       case ActivityType.exercise:
-        return Colors.orange;
+        return const Color(0xFFFF9800);
       case ActivityType.sleep:
-        return Colors.purple;
+        return const Color(0xFF9C27B0);
       case ActivityType.meal:
-        return Colors.green;
+        return AppTheme.secondaryColor;
     }
   }
 
