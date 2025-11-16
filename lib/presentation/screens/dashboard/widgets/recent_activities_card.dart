@@ -28,60 +28,72 @@ class RecentActivitiesCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(12.w),
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(12.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppTheme.accentColor.withValues(alpha: 0.3),
+                            AppTheme.primaryColor.withValues(alpha: 0.3),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Icon(
+                        Icons.history,
+                        color: AppTheme.accentColor,
+                        size: 24.sp,
+                      ),
+                    ),
+                    SizedBox(width: 16.w),
+                    Expanded(
+                      child: Text(
+                        'Recent Activities',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppTheme.darkTextColor
+                              : AppTheme.lightTextColor,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (activities.isNotEmpty)
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppTheme.accentColor.withValues(alpha: 0.3),
-                          AppTheme.primaryColor.withValues(alpha: 0.3),
+                          AppTheme.primaryColor.withValues(alpha: 0.2),
+                          AppTheme.primaryColor.withValues(alpha: 0.1),
                         ],
                       ),
-                      borderRadius: BorderRadius.circular(16.r),
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(
+                        color: AppTheme.primaryColor.withValues(alpha: 0.3),
+                        width: 1,
+                      ),
                     ),
-                    child: Icon(
-                      Icons.history,
-                      color: AppTheme.accentColor,
-                      size: 24.sp,
-                    ),
-                  ),
-                  SizedBox(width: 16.w),
-                  Text(
-                    'Recent Activities',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ],
-              ),
-              if (activities.isNotEmpty)
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppTheme.primaryColor.withValues(alpha: 0.2),
-                        AppTheme.primaryColor.withValues(alpha: 0.1),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.3),
-                      width: 1,
-                    ),
-                  ),
-                  child: Text(
-                    'View All',
-                    style: TextStyle(
-                      color: AppTheme.primaryColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.3,
+                    child: Text(
+                      'View All',
+                      style: TextStyle(
+                        color: AppTheme.primaryColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.3,
+                      ),
                     ),
                   ),
                 ),
@@ -141,15 +153,17 @@ class RecentActivitiesCard extends StatelessWidget {
 
   Widget _buildActivitiesList() {
     final recentActivities = activities.take(5).toList();
-    
+
     return Column(
-      children: recentActivities.map((activity) => _buildActivityItem(activity)).toList(),
+      children: recentActivities
+          .map((activity) => _buildActivityItem(activity))
+          .toList(),
     );
   }
 
   Widget _buildActivityItem(ActivityModel activity) {
     final color = _getActivityColor(activity.type);
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: 14.h),
       padding: EdgeInsets.all(18.w),

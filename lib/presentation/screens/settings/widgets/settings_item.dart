@@ -27,8 +27,8 @@ class SettingsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
-    final effectiveTextColor = textColor ?? 
+
+    final effectiveTextColor = textColor ??
         (isDark ? AppTheme.darkTextColor : AppTheme.lightTextColor);
     final effectiveIconColor = iconColor ?? AppTheme.primaryColor;
 
@@ -73,8 +73,8 @@ class SettingsItem extends StatelessWidget {
                         subtitle!,
                         style: TextStyle(
                           fontSize: 14.sp,
-                          color: isDark 
-                              ? AppTheme.darkTextSecondaryColor 
+                          color: isDark
+                              ? AppTheme.darkTextSecondaryColor
                               : AppTheme.lightTextSecondaryColor,
                         ),
                       ),
@@ -87,8 +87,8 @@ class SettingsItem extends StatelessWidget {
               else if (onTap != null)
                 Icon(
                   Icons.chevron_right,
-                  color: isDark 
-                      ? AppTheme.darkTextSecondaryColor 
+                  color: isDark
+                      ? AppTheme.darkTextSecondaryColor
                       : AppTheme.lightTextSecondaryColor,
                   size: 20.sp,
                 ),
