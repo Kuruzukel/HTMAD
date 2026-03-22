@@ -2,8 +2,7 @@
 
 # HTMAD
 
-**Health Tracker Mobile Application Development**  
-**A Comprehensive Flutter-Based Health Tracking Application**
+**Health Tracker Mobile Application Development**
 
 Mobile wellness platform with real-time tracking, analytics, and personalized insights for hydration, fitness, sleep, and nutrition.
 
