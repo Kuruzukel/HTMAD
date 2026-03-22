@@ -20,5 +20,6 @@
         "**/build/**": true,
         "**/.flutter-plugins": true,
         "**/.flutter-plugins-dependencies": true
-    }
+    },
+    "kiroAgent.configureMCP": "Disabled"
 }
