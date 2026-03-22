@@ -3,7 +3,11 @@
 **Health Tracker Mobile Application Development**  
 **A Comprehensive Flutter-Based Health Tracking Application**
 
-An enterprise-grade mobile wellness platform delivering real-time health metrics tracking, intelligent analytics, and personalized insights for hydration, fitness, sleep, and nutrition management.
+<div align="center">
+
+A professional mobile wellness platform providing real-time health tracking, intelligent analytics, and personalized insights for hydration, fitness, sleep, and nutrition.
+
+</div>
 
 ---
 
