@@ -1,13 +1,11 @@
+<div align="center">
+
 # HTMAD
 
 **Health Tracker Mobile Application Development**  
 **A Comprehensive Flutter-Based Health Tracking Application**
 
-<div align="center">
-
-A professional mobile wellness platform providing real-time health tracking, intelligent analytics, and personalized insights for hydration, fitness, sleep, and nutrition.
-
-</div>
+Mobile wellness platform with real-time tracking, analytics, and personalized insights for hydration, fitness, sleep, and nutrition.
 
 ---
 
@@ -105,6 +103,12 @@ Personalize your health tracking experience
 
 ### Frontend Technologies
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
+  <img src="https://img.shields.io/badge/Material_Design-757575?style=for-the-badge&logo=material-design&logoColor=white" alt="Material Design"/>
+</p>
+
 | Technology         | Purpose                         | Version |
 | ------------------ | ------------------------------- | ------- |
 | Flutter            | Cross-platform mobile framework | 3.0+    |
@@ -113,6 +117,11 @@ Personalize your health tracking experience
 | Flutter ScreenUtil | Responsive design               | 5.9.0   |
 
 ### Backend & Database
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"/>
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+</p>
 
 | Technology         | Purpose                        | Version |
 | ------------------ | ------------------------------ | ------- |
@@ -123,6 +132,10 @@ Personalize your health tracking experience
 
 ### State Management & Architecture
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Provider-5C2D91?style=for-the-badge&logo=flutter&logoColor=white" alt="Provider"/>
+</p>
+
 | Technology         | Purpose                   | Version |
 | ------------------ | ------------------------- | ------- |
 | Provider           | State management          | 6.1.1   |
@@ -131,6 +144,10 @@ Personalize your health tracking experience
 
 ### UI & Visualization
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Charts-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Charts"/>
+</p>
+
 | Technology     | Purpose                       | Version |
 | -------------- | ----------------------------- | ------- |
 | FL Chart       | Charts and data visualization | 0.65.0  |
@@ -138,6 +155,10 @@ Personalize your health tracking experience
 | Custom Widgets | Reusable UI components        | -       |
 
 ### Utilities & Services
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Notifications-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Notifications"/>
+</p>
 
 | Technology                  | Purpose                   | Version |
 | --------------------------- | ------------------------- | ------- |
@@ -150,6 +171,12 @@ Personalize your health tracking experience
 
 ### Development Tools
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white" alt="Android Studio"/>
+  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
+</p>
+
 | Tool             | Purpose                 |
 | ---------------- | ----------------------- |
 | Android Studio   | Primary IDE             |
@@ -159,6 +186,15 @@ Personalize your health tracking experience
 | Git              | Version control         |
 
 ### Platform Support
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"/>
+  <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" alt="iOS"/>
+  <img src="https://img.shields.io/badge/Web-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Web"/>
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
+  <img src="https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="macOS"/>
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"/>
+</p>
 
 | Platform | Status            |
 | -------- | ----------------- |
